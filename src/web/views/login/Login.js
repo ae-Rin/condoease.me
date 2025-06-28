@@ -53,7 +53,7 @@ const Login = () => {
       >
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <img
-            src="/src/assets/images/logo_white.png"
+            src="/condoease-main/condoease/public/images/logo_white.png"
             alt="CondoEase Logo"
             style={{ height: 64, marginRight: 12 }}
           />
