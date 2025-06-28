@@ -16,7 +16,7 @@ import {
 import CIcon from '@coreui/icons-react'
 import { cilLockLocked, cilUser } from '@coreui/icons'
 import { FaGoogle, FaFacebookF } from 'react-icons/fa'
-import logoWhite from '../../../assets/images/logo_white.png'
+import logoWhite from 'src/assets/images/logo_white.png'
 
 const Login = () => {
   const [email, setEmail] = useState('')

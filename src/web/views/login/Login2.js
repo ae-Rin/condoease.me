@@ -13,6 +13,7 @@ import {
   CInputGroupText,
 } from '@coreui/react'
 import { FaEye } from 'react-icons/fa'
+import logoWhite from 'src/assets/images/logo_white.png'
 
 const Login2 = () => {
   const location = useLocation()
@@ -69,11 +70,7 @@ const Login2 = () => {
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center' }}>
-          <img
-            src="/src/assets/images/logo_white.png"
-            alt="CondoEase Logo"
-            style={{ height: 64, marginRight: 12 }}
-          />
+          <img src={logoWhite} alt="CondoEase Logo" style={{ height: 64, marginRight: 12 }} />
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 34 }}>
           <span style={{ color: 'white', fontSize: 20 }}>Don't have an account?</span>

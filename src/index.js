@@ -7,7 +7,6 @@ import WebApp from './web/WebApp' // Use WebApp as the entry point
 import store from './store'
 import { UserProvider } from './context/UserContext' // Import UserProvider
 
-
 createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
