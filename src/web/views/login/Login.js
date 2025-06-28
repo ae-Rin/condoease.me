@@ -16,6 +16,7 @@ import {
 import CIcon from '@coreui/icons-react'
 import { cilLockLocked, cilUser } from '@coreui/icons'
 import { FaGoogle, FaFacebookF } from 'react-icons/fa'
+import logoWhite from '../../../assets/images/logo_white.png'
 
 const Login = () => {
   const [email, setEmail] = useState('')
@@ -52,11 +53,7 @@ const Login = () => {
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center' }}>
-          <img
-            src="/condoease-main/condoease/public/images/logo_white.png"
-            alt="CondoEase Logo"
-            style={{ height: 64, marginRight: 12 }}
-          />
+          <img src={logoWhite} alt="CondoEase Logo" style={{ height: 64, marginRight: 12 }} />
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 34 }}>
           <span style={{ color: 'white', fontSize: 20 }}>Don't have an account?</span>
