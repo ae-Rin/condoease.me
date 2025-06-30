@@ -19,7 +19,7 @@ const Login2 = () => {
   const location = useLocation()
   const navigate = useNavigate()
   const { setUser } = useUser() // <-- Context setter
-
+  const API_URL = process.env.REACT_APP_API_URL
   const emailFromState = location.state?.email || ''
   const [email, setEmail] = useState(emailFromState)
   const [password, setPassword] = useState('')
@@ -29,13 +29,14 @@ const Login2 = () => {
   const handleLogin = async (e) => {
     e.preventDefault()
     try {
-      const response = await fetch(process.env.REACT_APP_API_URL + '/api/login', {
+      const response = await fetch(`${API_URL}/api/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
       })
 
       const data = await response.json()
+      console.log('API URL:', API_URL)
 
       if (response.ok && data.token) {
         console.log('%c[Login2] Login successful!', 'color: green')
