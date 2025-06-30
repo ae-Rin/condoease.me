@@ -25,7 +25,7 @@ const Login = () => {
   const [emailError, setEmailError] = useState('')
 
   const validateEmail = (email) => {
-    const regex = /^[a-zA-Z._%+-]+@[a-zA-Z]+\.(com|net|org|edu)$/ // restricts digits
+    const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
     return regex.test(email)
   }
 
