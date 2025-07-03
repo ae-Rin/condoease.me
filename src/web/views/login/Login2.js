@@ -19,7 +19,7 @@ const Login2 = () => {
   const location = useLocation()
   const navigate = useNavigate()
   const { setUser } = useUser() // <-- Context setter
-  const API_URL = process.env.REACT_APP_API_URL
+  const API_URL = process.env.VITE_APP_API_URL
   const emailFromState = location.state?.email || ''
   const [email, setEmail] = useState(emailFromState)
   const [password, setPassword] = useState('')
