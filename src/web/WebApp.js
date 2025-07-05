@@ -60,24 +60,23 @@ const WebApp = () => {
         }
       >
         <Routes>
-          {/* Apply ProtectedRoute to all routes */}
+          {/* Public routes */}
+          <Route path="/login" element={<Login />} />
+          <Route path="/loginstep2" element={<Login2 />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/500" element={<Page500 />} />
+          <Route path="/404" element={<Page404 />} />
+
+          {/* Protected routes */}
           <Route
             path="*"
             element={
               <ProtectedRoute>
                 <Routes>
-                  {/* Public routes */}
-                  <Route path="/login" element={<Login />} />
-                  <Route path="/loginstep2" element={<Login2 />} />
-                  <Route path="/register" element={<Register />} />
-                  <Route path="/registerstep2" element={<RegisterStep2 />} />
-                  <Route path="/registerverify" element={<RegisterVerify />} />
-                  <Route path="/500" element={<Page500 />} />
-                  <Route path="/404" element={<Page404 />} />
-
-                  {/* Protected routes nested inside WebLayout */}
                   <Route path="/" element={<WebLayout />}>
                     <Route index element={<Navigate to="/cards" replace />} />
+                    <Route path="/registerstep2" element={<RegisterStep2 />} />
+                    <Route path="/registerverify" element={<RegisterVerify />} />
                     <Route path="cards" element={<Cards />} />
                     <Route path="carousel" element={<Carousel />} />
                     <Route path="navs" element={<Navs />} />
@@ -96,8 +95,6 @@ const WebApp = () => {
                     <Route path="leasestenancylist" element={<LeasesTenancyList />} />
                     <Route path="leasestenancyterminated" element={<LeasesTenancyTerminated />} />
                   </Route>
-
-                  {/* Catch-all */}
                   <Route path="*" element={<Navigate to="/404" replace />} />
                 </Routes>
               </ProtectedRoute>

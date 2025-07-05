@@ -29,10 +29,10 @@ const Page404 = React.lazy(() => import('./views/page404/Page404'))
 const Page500 = React.lazy(() => import('./views/page500/Page500'))
 
 const webRoutes = [
-  { path: '/', name: 'Default', element: <Navigate to="/login" replace />, isProtected: true },
-  { path: '/login', name: 'Login Page', element: <Login />, isProtected: true },
-  { path: '/loginstep2', name: 'Login Step 2', element: <Login2 />, isProtected: true },
-  { path: '/register', name: 'Register Page', element: <Register />, isProtected: true },
+  { path: '/', name: 'Default', element: <Navigate to="/login" replace />, isProtected: false },
+  { path: '/login', name: 'Login Page', element: <Login />, isProtected: false },
+  { path: '/loginstep2', name: 'Login Step 2', element: <Login2 />, isProtected: false },
+  { path: '/register', name: 'Register Page', element: <Register />, isProtected: false },
   {
     path: '/registerstep2',
     name: 'Register Step 2',
