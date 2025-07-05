@@ -30,6 +30,7 @@ const RegisterStep2 = () => {
     email: '',
     password: '',
     rePassword: '',
+    role: 'tenant', // default
   })
 
   const handleInputChange = (e) => {
@@ -63,6 +64,7 @@ const RegisterStep2 = () => {
           lastName: formValues.lastName,
           email: email,
           password: formValues.password,
+          role: formValues.role,
         }),
       })
       const data = await res.json()
