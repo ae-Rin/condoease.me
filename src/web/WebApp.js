@@ -46,9 +46,14 @@ const WebApp = () => {
     if (theme) {
       setColorMode(theme)
     } else if (!isColorModeSet()) {
-      setColorMode('light') // Default to light mode
+      setColorMode('light') // Still keep this for async fallback
     }
   }, [isColorModeSet, setColorMode])
+
+  // Immediate override for SSR/deployment bug
+  if (!isColorModeSet()) {
+    setColorMode('light')
+  }
 
   return (
     <HashRouter>

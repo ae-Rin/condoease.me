@@ -86,9 +86,9 @@ body {
   min-height: calc(3rem + 1px); // stylelint-disable-line function-disallowed-list
 }
 
-@include color-mode(dark) {
+@include color-mode(light) {
   body {
-    background-color: var(--cui-dark-bg-subtle);
+    background-color: var(--cui-light-bg-subtle);
   }
 
   .footer {
