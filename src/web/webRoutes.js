@@ -37,7 +37,7 @@ const webRoutes = [
     path: '/registerstep2',
     name: 'Register Step 2',
     element: <RegisterStep2 />,
-    isProtected: true,
+    isProtected: false,
   },
   {
     path: '/registerverify',
