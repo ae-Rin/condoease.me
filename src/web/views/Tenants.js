@@ -326,54 +326,6 @@ const Tenants = () => {
               </CCol>
             </CRow>
 
-            {/* Unit Assignment */}
-            <hr className="my-4" />
-            <h5 className="mb-3">Unit Assignment</h5>
-            <CRow className="mb-3">
-              <CCol md={6}>
-                <CFormInput
-                  type="text"
-                  name="unitNumber"
-                  placeholder="Unit Number"
-                  value={formValues.unitNumber}
-                  onChange={handleInputChange}
-                  required
-                />
-              </CCol>
-              <CCol md={6}>
-                <CFormInput
-                  type="date"
-                  name="moveInDate"
-                  placeholder="Move-in Date"
-                  value={formValues.moveInDate}
-                  onChange={handleInputChange}
-                  required
-                />
-              </CCol>
-            </CRow>
-            <CRow className="mb-3">
-              <CCol md={6}>
-                <CFormInput
-                  type="text"
-                  name="leaseTerm"
-                  placeholder="Lease Term (e.g. 12 months)"
-                  value={formValues.leaseTerm}
-                  onChange={handleInputChange}
-                  required
-                />
-              </CCol>
-              <CCol md={6}>
-                <CFormInput
-                  type="number"
-                  name="monthlyRent"
-                  placeholder="Monthly Rent (₱)"
-                  value={formValues.monthlyRent}
-                  onChange={handleInputChange}
-                  required
-                />
-              </CCol>
-            </CRow>
-
             <div className="d-flex justify-content-end">
               <CButton
                 type="submit"
