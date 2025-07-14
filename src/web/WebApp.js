@@ -7,7 +7,7 @@ import '../scss/style.scss'
 import ProtectedRoute from '../shared/ProtectedRoute'
 import WebLayout from './layout/WebLayout'
 
-// Lazy pages
+// Lazy-loaded pages
 const Login = React.lazy(() => import('./views/login/Login'))
 const Login2 = React.lazy(() => import('./views/login/Login2'))
 const Register = React.lazy(() => import('./views/register/Register'))
@@ -41,19 +41,15 @@ const WebApp = () => {
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.href.split('?')[1])
-    const theme = urlParams.get('theme')?.match(/^[A-Za-z0-9\s]+/)[0]
+    const match = urlParams.get('theme')?.match(/^[A-Za-z0-9\s]+/)
+    const theme = match ? match[0] : null
 
     if (theme) {
       setColorMode(theme)
     } else if (!isColorModeSet()) {
-      setColorMode('light') // Still keep this for async fallback
+      setColorMode('light')
     }
   }, [isColorModeSet, setColorMode])
-
-  // Immediate override for SSR/deployment bug
-  if (!isColorModeSet()) {
-    setColorMode('light')
-  }
 
   return (
     <HashRouter>
@@ -65,7 +61,7 @@ const WebApp = () => {
         }
       >
         <Routes>
-          {/* Public routes */}
+          {/* Public Routes */}
           <Route path="/login" element={<Login />} />
           <Route path="/loginstep2" element={<Login2 />} />
           <Route path="/register" element={<Register />} />
@@ -73,7 +69,7 @@ const WebApp = () => {
           <Route path="/500" element={<Page500 />} />
           <Route path="/404" element={<Page404 />} />
 
-          {/* Protected routes */}
+          {/* Protected Routes */}
           <Route
             path="*"
             element={
