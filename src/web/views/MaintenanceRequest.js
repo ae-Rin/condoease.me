@@ -88,6 +88,35 @@ const MaintenanceRequest = () => {
               {new Date(requestDetails.created_at).toLocaleDateString()}
             </p>
 
+            {requestDetails.attachments && requestDetails.attachments.length > 0 && (
+              <>
+                <p>
+                  <strong>Attachments:</strong>
+                </p>
+                <ul>
+                  {requestDetails.attachments.map((file, index) => (
+                    <li key={index}>
+                      {file.file_type.startsWith('image') ? (
+                        <img
+                          src={`${API_URL}${file.file_url}`}
+                          alt={`Attachment ${index + 1}`}
+                          style={{ maxWidth: '100%', maxHeight: '300px', marginBottom: '10px' }}
+                        />
+                      ) : (
+                        <a
+                          href={`${API_URL}${file.file_url}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {file.file_url.split('/').pop()}
+                        </a>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </>
+            )}
+
             <h6>Add Comment</h6>
             <CFormTextarea
               rows="3"
