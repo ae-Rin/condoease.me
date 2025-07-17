@@ -31,6 +31,7 @@ const PropertyUnitList = React.lazy(() => import('./views/PropertyUnitList'))
 const LeasesTenancy = React.lazy(() => import('./views/LeasesTenancy'))
 const LeasesTenancyList = React.lazy(() => import('./views/LeasesTenancyList'))
 const LeasesTenancyTerminated = React.lazy(() => import('./views/LeasesTenancyTerminated'))
+const MaintenanceRequest = React.lazy(() => import('./views/MaintenanceRequest'))
 
 const Page404 = React.lazy(() => import('./views/page404/Page404'))
 const Page500 = React.lazy(() => import('./views/page500/Page500'))
@@ -96,6 +97,7 @@ const WebApp = () => {
                     <Route path="leasestenancylist" element={<LeasesTenancyList />} />
                     <Route path="leasestenancyterminated" element={<LeasesTenancyTerminated />} />
                   </Route>
+                  <Route path="maintenancerequest" element={<MaintenanceRequest />} />
                   <Route path="*" element={<Navigate to="/404" replace />} />
                 </Routes>
               </ProtectedRoute>
