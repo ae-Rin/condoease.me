@@ -60,6 +60,23 @@ const MaintenanceRequest = () => {
 
   return (
     <div className="container" style={{ padding: '20px' }}>
+     <div className="mb-3">
+        <span
+          className="text-body-secondary"
+          style={{ cursor: 'pointer' }}
+          onClick={() => navigate('/cards')}
+        >
+          DASHBOARD
+        </span>{' '}
+        <span
+          className="text-body-secondary"
+          style={{ cursor: 'pointer' }}
+          onClick={() => navigate('/collapses')}
+        >
+          MAINTENANCE TRACKING
+        </span>{' '}
+        / <span style={{ color: '#F28D35' }}>MAINTENANCE REQUEST DETAILS</span>
+      </div>
       {loading ? (
         <p>Loading request details...</p>
       ) : requestDetails ? (
