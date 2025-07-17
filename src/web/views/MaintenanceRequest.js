@@ -111,9 +111,6 @@ const MaintenanceRequest = () => {
               >
                 Mark as Ongoing
               </CButton>
-              <CButton color="danger" onClick={() => handleUpdateStatus('archived')}>
-                Archive
-              </CButton>
             </div>
           </CCardBody>
         </CCard>
