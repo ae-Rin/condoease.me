@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { useUser } from '../../../context/UserContext' // <-- useUser Context
+import { useUser } from '../../../context/UserContext'
 
 import {
   CButton,
@@ -11,6 +11,7 @@ import {
   CCol,
   CInputGroup,
   CInputGroupText,
+  CSpinner,
 } from '@coreui/react'
 import { FaEye } from 'react-icons/fa'
 import logoWhite from 'src/assets/images/logo_white.png'
@@ -25,9 +26,11 @@ const Login2 = () => {
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
   const [keepLoggedIn, setKeepLoggedIn] = useState(false)
+  const [loading, setLoading] = useState(false) // <-- Loading state
 
   const handleLogin = async (e) => {
     e.preventDefault()
+    setLoading(true) // Start loading
     try {
       const response = await fetch(`${API_URL}/api/login`, {
         method: 'POST',
@@ -54,6 +57,8 @@ const Login2 = () => {
     } catch (error) {
       console.error('Login error:', error)
       alert('Server error. Please try again later.')
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -175,8 +180,9 @@ const Login2 = () => {
                     backgroundColor: '#F28D35',
                   }}
                   type="submit"
+                  disabled={loading}
                 >
-                  Login
+                  {loading ? <CSpinner size="sm" color="light" /> : 'Login'}
                 </CButton>
               </div>
             </CForm>

@@ -73,6 +73,16 @@ const Collapses = () => {
   return (
     <div className="container" style={{ padding: '20px' }}>
       <h4 className="mb-3">Maintenance Tracking</h4>
+      <div className="mb-3">
+        <span
+          className="text-body-secondary"
+          style={{ cursor: 'pointer' }}
+          onClick={() => navigate('/cards')}
+        >
+          DASHBOARD
+        </span>{' '}
+        / <span style={{ color: '#F28D35' }}>MAINTENANCE TRACKING</span>
+      </div>
 
       {/* Stats Cards */}
       <CRow className="mb-4">
