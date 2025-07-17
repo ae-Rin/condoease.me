@@ -28,7 +28,6 @@ const Collapses = () => {
     pending: 0,
     ongoing: 0,
     completed: 0,
-    archived: 0,
   })
 
   useEffect(() => {
@@ -53,9 +52,8 @@ const Collapses = () => {
         const pending = data.requests.filter((req) => req.status === 'pending').length
         const ongoing = data.requests.filter((req) => req.status === 'ongoing').length
         const completed = data.requests.filter((req) => req.status === 'completed').length
-        const archived = data.requests.filter((req) => req.status === 'archived').length
 
-        setStats({ total, pending, ongoing, completed, archived })
+        setStats({ total, pending, ongoing, completed })
       } catch (err) {
         console.error('Error fetching maintenance requests:', err)
       } finally {
@@ -115,14 +113,6 @@ const Collapses = () => {
             <CCardBody>
               <h6>Completed Requests</h6>
               <h4>{stats.completed}</h4>
-            </CCardBody>
-          </CCard>
-        </CCol>
-        <CCol md={3}>
-          <CCard className="border-secondary">
-            <CCardBody>
-              <h6>Archived/Closed Requests</h6>
-              <h4>{stats.archived}</h4>
             </CCardBody>
           </CCard>
         </CCol>

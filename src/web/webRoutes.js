@@ -63,7 +63,7 @@ const webRoutes = [
   { path: '/leasestenancy', name: 'Lease Tenancy', element: <LeasesTenancy />, isProtected: true },
   { path: '/leasestenancylist', name: 'List of Leases', element: <LeasesTenancyList />, isProtected: true },
   { path: '/leasestenancyterminated', name: 'Terminated Leases', element: <LeasesTenancyTerminated />, isProtected: true },
-  { path: '/maintenancerequest', name: 'Maintenance Request', element: <MaintenanceRequest />, isProtected: true },
+  { path: '/maintenancerequest/:requestId', name: 'Maintenance Request', element: <MaintenanceRequest />, isProtected: true },
   { path: '/404', name: 'Page 404', element: <Page404 />, isProtected: true },
   { path: '/500', name: 'Page 500', element: <Page500 />, isProtected: true },
   {

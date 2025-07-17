@@ -97,7 +97,7 @@ const WebApp = () => {
                     <Route path="leasestenancylist" element={<LeasesTenancyList />} />
                     <Route path="leasestenancyterminated" element={<LeasesTenancyTerminated />} />
                   </Route>
-                  <Route path="maintenancerequest" element={<MaintenanceRequest />} />
+                  <Route path="maintenancerequest/:requestId" element={<MaintenanceRequest />} />
                   <Route path="*" element={<Navigate to="/404" replace />} />
                 </Routes>
               </ProtectedRoute>
