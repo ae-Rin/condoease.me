@@ -182,7 +182,11 @@ const Login2 = () => {
                   type="submit"
                   disabled={loading}
                 >
-                  {loading ? <CSpinner size="sm" color="light" /> : 'Login'}
+                  {loading ? (
+                    <CSpinner style={{ width: '3rem', height: '3rem', color: '#FFFFFF' }} />
+                  ) : (
+                    'Login'
+                  )}
                 </CButton>
               </div>
             </CForm>

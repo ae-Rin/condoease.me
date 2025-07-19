@@ -1,14 +1,16 @@
 /* eslint-disable prettier/prettier */
 import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
-import { CCard, CCardBody, CCardHeader, CFormTextarea, CButton } from '@coreui/react'
+import { useParams, useNavigate } from 'react-router-dom'
+import { CCard, CCardBody, CCardHeader, CFormTextarea, CButton, CFormSelect } from '@coreui/react'
 
 const MaintenanceRequest = () => {
   const { requestId } = useParams()
+  const navigate = useNavigate()
   const API_URL = import.meta.env.VITE_APP_API_URL
   const [requestDetails, setRequestDetails] = useState(null)
   const [loading, setLoading] = useState(true)
   const [comment, setComment] = useState('')
+  const [status, setStatus] = useState('') // Dropdown state
 
   useEffect(() => {
     const fetchRequestDetails = async () => {
@@ -26,6 +28,7 @@ const MaintenanceRequest = () => {
 
         const data = await res.json()
         setRequestDetails(data)
+        setStatus(data.status) // Set initial status
       } catch (err) {
         console.error('Error fetching request details:', err)
       } finally {
@@ -36,7 +39,7 @@ const MaintenanceRequest = () => {
     fetchRequestDetails()
   }, [API_URL, requestId])
 
-  const handleUpdateStatus = async (newStatus) => {
+  const handleUpdateStatus = async () => {
     try {
       const res = await fetch(`${API_URL}/api/maintenance-requests/${requestId}`, {
         method: 'PUT',
@@ -44,7 +47,7 @@ const MaintenanceRequest = () => {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${localStorage.getItem('authToken')}`,
         },
-        body: JSON.stringify({ status: newStatus, comment }),
+        body: JSON.stringify({ status, comment }),
       })
 
       if (!res.ok) {
@@ -53,6 +56,7 @@ const MaintenanceRequest = () => {
       }
 
       alert('Status updated successfully!')
+      navigate('/collapses') // Redirect to Maintenance Tracking
     } catch (err) {
       console.error('Error updating status:', err)
     }
@@ -60,7 +64,8 @@ const MaintenanceRequest = () => {
 
   return (
     <div className="container" style={{ padding: '20px' }}>
-     <div className="mb-3">
+      <h4 className="mb-3">Maintenance Request Details</h4>
+      <div className="mb-3">
         <span
           className="text-body-secondary"
           style={{ cursor: 'pointer' }}
@@ -68,6 +73,7 @@ const MaintenanceRequest = () => {
         >
           DASHBOARD
         </span>{' '}
+        /{' '}
         <span
           className="text-body-secondary"
           style={{ cursor: 'pointer' }}
@@ -82,14 +88,14 @@ const MaintenanceRequest = () => {
       ) : requestDetails ? (
         <CCard>
           <CCardHeader>
-            <h5>Maintenance Request Details</h5>
+            <h5>Tenant Request</h5>
+            <p style={{ color: '#888', marginBottom: 0 }}>
+              {requestDetails.maintenance_type} | {requestDetails.category}
+            </p>
           </CCardHeader>
           <CCardBody>
             <p>
-              <strong>Tenant:</strong> {requestDetails.first_name} {requestDetails.last_name}
-            </p>
-            <p>
-              <strong>Type:</strong> {requestDetails.maintenance_type}
+              <strong>Type of Maintenance:</strong> {requestDetails.maintenance_type}
             </p>
             <p>
               <strong>Category:</strong> {requestDetails.category}
@@ -97,27 +103,30 @@ const MaintenanceRequest = () => {
             <p>
               <strong>Description:</strong> {requestDetails.description}
             </p>
-            <p>
-              <strong>Status:</strong> {requestDetails.status}
-            </p>
-            <p>
-              <strong>Date Created:</strong>{' '}
-              {new Date(requestDetails.created_at).toLocaleDateString()}
-            </p>
-
             {requestDetails.attachments && requestDetails.attachments.length > 0 && (
               <>
                 <p>
-                  <strong>Attachments:</strong>
+                  <strong>Images & Videos:</strong>
                 </p>
-                <ul>
+                <div style={{ display: 'flex', gap: '10px' }}>
                   {requestDetails.attachments.map((file, index) => (
-                    <li key={index}>
+                    <div
+                      key={index}
+                      style={{
+                        width: '100px',
+                        height: '100px',
+                        backgroundColor: '#f0f0f0',
+                        borderRadius: '8px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                      }}
+                    >
                       {file.file_type.startsWith('image') ? (
                         <img
                           src={`${API_URL}${file.file_url}`}
                           alt={`Attachment ${index + 1}`}
-                          style={{ maxWidth: '100%', maxHeight: '300px', marginBottom: '10px' }}
+                          style={{ maxWidth: '100%', maxHeight: '100%' }}
                         />
                       ) : (
                         <a
@@ -128,34 +137,66 @@ const MaintenanceRequest = () => {
                           {file.file_url.split('/').pop()}
                         </a>
                       )}
-                    </li>
+                    </div>
                   ))}
-                </ul>
+                </div>
               </>
             )}
-
-            <h6>Add Comment</h6>
-            <CFormTextarea
-              rows="3"
-              value={comment}
-              onChange={(e) => setComment(e.target.value)}
-              placeholder="Add your comment here..."
-            />
-
-            <div className="d-flex justify-content-end mt-3">
-              <CButton
-                color="success"
-                className="me-2"
-                onClick={() => handleUpdateStatus('completed')}
+            <div className="mt-4">
+              <CFormSelect
+                value={status}
+                onChange={(e) => setStatus(e.target.value)}
+                style={{
+                  borderColor: '#A3C49A',
+                  borderRadius: '8px',
+                  padding: '10px',
+                  fontSize: '16px',
+                }}
               >
-                Mark as Completed
+                <option value="completed">Completed</option>
+                <option value="ongoing">Ongoing</option>
+              </CFormSelect>
+            </div>
+            <div className="mt-3">
+              <h6>Comment</h6>
+              <CFormTextarea
+                rows="3"
+                value={comment}
+                onChange={(e) => setComment(e.target.value)}
+                placeholder="Add your comment here..."
+                style={{
+                  borderColor: '#A3C49A',
+                  borderRadius: '8px',
+                  padding: '10px',
+                  fontSize: '16px',
+                }}
+              />
+            </div>
+            <div className="d-flex justify-content-end mt-4">
+              <CButton
+                color="secondary"
+                className="me-2"
+                onClick={() => navigate('/collapses')}
+                style={{
+                  borderRadius: '8px',
+                  padding: '10px 20px',
+                  fontSize: '16px',
+                }}
+              >
+                Cancel
               </CButton>
               <CButton
                 color="warning"
-                className="me-2"
-                onClick={() => handleUpdateStatus('ongoing')}
+                onClick={handleUpdateStatus}
+                style={{
+                  borderRadius: '8px',
+                  padding: '10px 20px',
+                  fontSize: '16px',
+                  backgroundColor: '#F28D35',
+                  borderColor: '#F28D35',
+                }}
               >
-                Mark as Ongoing
+                Send Decision
               </CButton>
             </div>
           </CCardBody>
