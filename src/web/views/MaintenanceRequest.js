@@ -10,7 +10,7 @@ const MaintenanceRequest = () => {
   const [requestDetails, setRequestDetails] = useState(null)
   const [loading, setLoading] = useState(true)
   const [comment, setComment] = useState('')
-  const [status, setStatus] = useState('') // Dropdown state
+  const [status, setStatus] = useState('')
 
   useEffect(() => {
     const fetchRequestDetails = async () => {
@@ -28,7 +28,7 @@ const MaintenanceRequest = () => {
 
         const data = await res.json()
         setRequestDetails(data)
-        setStatus(data.status) // Set initial status
+        setStatus(data.status)
       } catch (err) {
         console.error('Error fetching request details:', err)
       } finally {
@@ -56,7 +56,7 @@ const MaintenanceRequest = () => {
       }
 
       alert('Status updated successfully!')
-      navigate('/collapses') // Redirect to Maintenance Tracking
+      navigate('/collapses')
     } catch (err) {
       console.error('Error updating status:', err)
     }
@@ -73,8 +73,7 @@ const MaintenanceRequest = () => {
         >
           DASHBOARD
         </span>{' '}
-        /{' '}
-        <span
+        / <span
           className="text-body-secondary"
           style={{ cursor: 'pointer' }}
           onClick={() => navigate('/collapses')}
@@ -88,7 +87,7 @@ const MaintenanceRequest = () => {
       ) : requestDetails ? (
         <CCard>
           <CCardHeader>
-            <h5>Tenant Request</h5>
+            <h5>Tenant: {requestDetails.first_name} {requestDetails.last_name}</h5>
             <p style={{ color: '#888', marginBottom: 0 }}>
               {requestDetails.maintenance_type} | {requestDetails.category}
             </p>
@@ -153,8 +152,8 @@ const MaintenanceRequest = () => {
                   fontSize: '16px',
                 }}
               >
-                <option value="completed">Completed</option>
-                <option value="ongoing">Ongoing</option>
+                <option value="approved">Approve</option>
+                <option value="rejected">Reject</option>
               </CFormSelect>
             </div>
             <div className="mt-3">
@@ -177,24 +176,13 @@ const MaintenanceRequest = () => {
                 color="secondary"
                 className="me-2"
                 onClick={() => navigate('/collapses')}
-                style={{
-                  borderRadius: '8px',
-                  padding: '10px 20px',
-                  fontSize: '16px',
-                }}
+                style={{ fontWeight: 'bold' }}
               >
                 Cancel
               </CButton>
               <CButton
-                color="warning"
                 onClick={handleUpdateStatus}
-                style={{
-                  borderRadius: '8px',
-                  padding: '10px 20px',
-                  fontSize: '16px',
-                  backgroundColor: '#F28D35',
-                  borderColor: '#F28D35',
-                }}
+                style={{ backgroundColor: '#F28D35', color: 'white', fontWeight: 'bold' }}
               >
                 Send Decision
               </CButton>

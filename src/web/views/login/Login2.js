@@ -183,7 +183,7 @@ const Login2 = () => {
                   disabled={loading}
                 >
                   {loading ? (
-                    <CSpinner style={{ width: '3rem', height: '3rem', color: '#FFFFFF' }} />
+                    <CSpinner style={{ width: '2rem', height: '2rem', color: '#FFFFFF' }} />
                   ) : (
                     'Login'
                   )}
