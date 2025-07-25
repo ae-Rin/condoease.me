@@ -49,7 +49,8 @@ const ListGroups = () => {
 
   return (
     <div className="container" style={{ padding: '20px' }}>
-      <h4 className="mb-3">Payment List by Month</h4>
+      <h4 className="mb-3">TENANT TRANSACTIONS</h4>
+      <h2 className="mb-3">Payment List by Month</h2>
       <div className="mb-3">
         <span
           className="text-body-secondary"
@@ -58,7 +59,7 @@ const ListGroups = () => {
         >
           DASHBOARD
         </span>{' '}
-        / <span style={{ color: '#F28D35' }}>PAYMENT LIST</span>
+        / <span style={{ color: '#F28D35' }}>TENANT TRANSACTIONS</span>
       </div>
 
       {loading ? (
@@ -77,7 +78,7 @@ const ListGroups = () => {
         <CTable striped hover responsive>
           <CTableHead>
             <CTableRow>
-              <CTableHeaderCell>#</CTableHeaderCell>
+              <CTableHeaderCell>ID</CTableHeaderCell>
               <CTableHeaderCell>Month and Year</CTableHeaderCell>
               <CTableHeaderCell>Number of Payments</CTableHeaderCell>
               <CTableHeaderCell>Total Due</CTableHeaderCell>
