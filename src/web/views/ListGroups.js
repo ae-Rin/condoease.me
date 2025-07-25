@@ -62,9 +62,17 @@ const ListGroups = () => {
       </div>
 
       {loading ? (
-        <p>Loading payment list...</p>
+        <CTableRow>
+          <CTableDataCell colSpan="7" className="text-center">
+            Loading payment list...
+          </CTableDataCell>
+        </CTableRow>
       ) : paymentList.length === 0 ? (
-        <p>No payments found.</p>
+        <CTableRow>
+          <CTableDataCell colSpan="7" className="text-center">
+            No payments found.
+          </CTableDataCell>
+        </CTableRow>
       ) : (
         <CTable striped hover responsive>
           <CTableHead>
