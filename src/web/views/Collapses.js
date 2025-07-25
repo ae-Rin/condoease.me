@@ -140,7 +140,7 @@ const Collapses = () => {
             </CTableRow>
           ) : maintenanceRequests.length === 0 ? (
             <CTableRow>
-              <CTableDataCell colSpan="7" className="text-center">
+              <CTableDataCell colSpan="7" cclassName="text-center">
                 No maintenance requests found.
               </CTableDataCell>
             </CTableRow>

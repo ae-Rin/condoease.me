@@ -49,8 +49,8 @@ const ListGroups = () => {
 
   return (
     <div className="container" style={{ padding: '20px' }}>
-      <h4 className="mb-3">TENANT TRANSACTIONS</h4>
-      <h2 className="mb-3">Payment List by Month</h2>
+      <h4 className="mb-3">Tenant Transactions</h4>
+      <h8 className="mb-3">Payment List by Month</h8>
       <div className="mb-3">
         <span
           className="text-body-secondary"
@@ -62,31 +62,31 @@ const ListGroups = () => {
         / <span style={{ color: '#F28D35' }}>TENANT TRANSACTIONS</span>
       </div>
 
-      {loading ? (
-        <CTableRow>
-          <CTableDataCell colSpan="7" className="text-center">
-            Loading payment list...
-          </CTableDataCell>
-        </CTableRow>
-      ) : paymentList.length === 0 ? (
-        <CTableRow>
-          <CTableDataCell colSpan="7" className="text-center">
-            No payments found.
-          </CTableDataCell>
-        </CTableRow>
-      ) : (
-        <CTable striped hover responsive>
-          <CTableHead>
+      <CTable striped hover responsive>
+        <CTableHead>
+          <CTableRow>
+            <CTableHeaderCell>#</CTableHeaderCell>
+            <CTableHeaderCell>Month and Year</CTableHeaderCell>
+            <CTableHeaderCell>Number of Payments</CTableHeaderCell>
+            <CTableHeaderCell>Total Due</CTableHeaderCell>
+            <CTableHeaderCell>Action</CTableHeaderCell>
+          </CTableRow>
+        </CTableHead>
+        <CTableBody>
+          {loading ? (
             <CTableRow>
-              <CTableHeaderCell>ID</CTableHeaderCell>
-              <CTableHeaderCell>Month and Year</CTableHeaderCell>
-              <CTableHeaderCell>Number of Payments</CTableHeaderCell>
-              <CTableHeaderCell>Total Due</CTableHeaderCell>
-              <CTableHeaderCell>Action</CTableHeaderCell>
+              <CTableDataCell colSpan="5" className="text-center">
+                Loading payment list...
+              </CTableDataCell>
             </CTableRow>
-          </CTableHead>
-          <CTableBody>
-            {paymentList.map((payment, index) => (
+          ) : paymentList.length === 0 ? (
+            <CTableRow>
+              <CTableDataCell colSpan="5" className="text-center">
+                No payments found.
+              </CTableDataCell>
+            </CTableRow>
+          ) : (
+            paymentList.map((payment, index) => (
               <CTableRow key={index}>
                 <CTableDataCell>{index + 1}</CTableDataCell>
                 <CTableDataCell>
@@ -104,10 +104,10 @@ const ListGroups = () => {
                   </CButton>
                 </CTableDataCell>
               </CTableRow>
-            ))}
-          </CTableBody>
-        </CTable>
-      )}
+            ))
+          )}
+        </CTableBody>
+      </CTable>
     </div>
   )
 }
