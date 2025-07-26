@@ -50,7 +50,6 @@ const ListGroups = () => {
   return (
     <div className="container" style={{ padding: '20px' }}>
       <h4 className="mb-3">Tenant Transactions</h4>
-      <h8 className="mb-3">Payment List by Month</h8>
       <div className="mb-3">
         <span
           className="text-body-secondary"
@@ -65,7 +64,7 @@ const ListGroups = () => {
       <CTable striped hover responsive>
         <CTableHead>
           <CTableRow>
-            <CTableHeaderCell>#</CTableHeaderCell>
+            <CTableHeaderCell>No.</CTableHeaderCell>
             <CTableHeaderCell>Month and Year</CTableHeaderCell>
             <CTableHeaderCell>Number of Payments</CTableHeaderCell>
             <CTableHeaderCell>Total Due</CTableHeaderCell>
