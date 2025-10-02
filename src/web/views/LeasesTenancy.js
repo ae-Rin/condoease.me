@@ -44,13 +44,13 @@ const LeasesTenancy = () => {
     // Fetch registered properties, units, and tenants from the backend API
     const fetchData = async () => {
       try {
-        const propertyRes = await fetch('http://localhost:5000/api/properties', {
+        const propertyRes = await fetch(`${API_URL}/api/properties`, {
           headers: { Authorization: `Bearer ${localStorage.getItem('authToken')}` },
         })
-        const unitRes = await fetch('http://localhost:5000/api/property-units', {
+        const unitRes = await fetch(`${API_URL}/api/property-units`, {
           headers: { Authorization: `Bearer ${localStorage.getItem('authToken')}` },
         })
-        const tenantRes = await fetch('http://localhost:5000/api/tenants', {
+        const tenantRes = await fetch(`${API_URL}/api/tenants`, {
           headers: { Authorization: `Bearer ${localStorage.getItem('authToken')}` },
         })
 
@@ -113,7 +113,7 @@ const LeasesTenancy = () => {
     })
 
     try {
-      const res = await fetch('http://localhost:5000/api/leases', {
+      const res = await fetch(`${API_URL}/api/leases`, {
         method: 'POST',
         body: formData,
         headers: { Authorization: `Bearer ${localStorage.getItem('authToken')}` },
