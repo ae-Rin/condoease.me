@@ -149,7 +149,7 @@ const LeasesTenancy = () => {
 
   return (
     <CContainer className="mt-5">
-      <h4 className="mb-4">Create New Lease</h4>
+      <h4 className="mb-4">Create New LeaseSSS</h4>
       <CCard>
         <CCardHeader>
           <strong>Lease Information</strong>
